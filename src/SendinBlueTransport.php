@@ -43,9 +43,17 @@ class SendinBlueTransport extends Transport
     {
         $this->beforeSendPerformed($message);
 
-        $this->api->sendTransacEmail($this->buildData($message));
+        $this->apiResponse = $this->api->sendTransacEmail($this->buildData($message));
 
-        return 0;
+        return $this;
+    }
+    
+    /**
+    * Return Api response
+    * @return SendinBlue\Client\Model\CreateSmtpEmail
+    */
+    public function getApiResponse(){
+        return $this->apiResponse;
     }
 
     /**
